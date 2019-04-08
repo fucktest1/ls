@@ -1,0 +1,257 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{随机标题}</title>
+<meta name="description" content="{标题}">
+<meta name="keywords" content="{标题}" />
+<link href="http://www.nxnews.net/images/2014sy.css" rel="stylesheet" type="text/css" />
+<link href="http://www.nxnews.net/images/20140529.css" rel="stylesheet" type="text/css" />
+<link href="http://www.nxnews.net/images/2015menu.css" rel="stylesheet" type="text/css" />
+<link href="http://www.nxnews.net/images/2015zzsc.css" rel="stylesheet" type="text/css" />
+<link href="http://www.nxnews.net/images/guanggaoqh.css" rel="stylesheet" type="text/css" />
+<link href="http://www.nxnews.net/images/tpqhcss.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="http://www.nxnews.net/images/pc.css" />
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<style type="text/css">
+.nrcontent {width:1000px; margin:0 auto;}
+.nrcontent .z{width:680px; float:left }
+.nrcontent .y{width:300px; float:right }
+
+.nrwz{width:1000px; height:35px; line-height:35px; border-bottom:1px solid #CCC;}
+.nrzw{width:660px; margin:10px;}
+.zwbt{width:660px; font-size:25px; line-height:35px; text-align:center; color:#000 }
+.zwfbt{width:660px; font-size:20px; line-height:30px; text-align:center; color:#555}
+
+.lmbt { font-size: 16px;	line-height: 30px; color: #555;   text-align:left; font-family:"微软雅黑"; }
+.lmbt A:link { font-size: 16px;	line-height: 30px; color: #555; TEXT-DECORATION: none; text-align:center; font-family:"微软雅黑";}
+.lmbt A:visited { font-size: 16px;	line-height: 30px; color: #555; TEXT-DECORATION: none;  text-align:center; font-family:"微软雅黑";}
+.lmbt A:active { font-size: 16px;	line-height: 30px; color: #555; TEXT-DECORATION: none;  text-align:center; font-family:"微软雅黑";}
+.lmbt A:hover { font-size: 16px;	line-height: 30px; color: #555; TEXT-DECORATION: none;  text-align:center; font-family:"微软雅黑";}
+
+.hs14 { font-size: 14px;	line-height: 30px; color: #555;   text-align:left; font-family:"微软雅黑"; }
+.hs14 A:link { font-size: 14px;	line-height: 30px; color: #555; TEXT-DECORATION: none; text-align:center; font-family:"微软雅黑";}
+.hs14 A:visited { font-size: 14px;	line-height: 30px; color: #555; TEXT-DECORATION: none;  text-align:center; font-family:"微软雅黑";}
+.hs14 A:active { font-size: 14px;	line-height: 30px; color: #555; TEXT-DECORATION: none;  text-align:center; font-family:"微软雅黑";}
+.hs14 A:hover { font-size: 14px;	line-height: 30px; color: #555; TEXT-DECORATION: none;  text-align:center; font-family:"微软雅黑";}
+
+
+
+
+div#pagediv { text-align: center;}
+.mgt30 span {border: 1px solid #D41616;padding: 2px 8px;color:white;background:#D41616}
+.mgt30 a {border: 1px solid #E3E3E3;color:black;padding: 2px 8px;margin: 0px 4px;}
+.mgt30 a:hover {border-color: #D41616;background: #D41616;color: white;}
+</style>
+</head>
+<body>
+<div>
+<div style="width:100%; margin:0 auto; height:30px; background-color:#fbfbfb; border-bottom:1px solid #eeeeee">
+<div style="width:1000px; margin:0 auto; height:30px;">
+<table width="1000" cellpadding="0" cellspacing="0">
+<tr>
+<td width="30"></td>
+<td width="568" class="listblackf12h25" height="30" align="left">{随机变量1}</td>
+<td width="370" class="listblackf12h25" align="right"><span onClick="var strHref=window.location.href;this.style.behavior='url(#default#homepage)'; this.setHomePage('http://www.nxnews.net/');" style="CURSOR:pointer">设为首页</span> <span style="CURSOR:pointer" onClick="window.external.addFavorite('http://www.nxnews.net/','{随机变量1}')" title="收藏该地址到您的收藏夹">加入收藏</span> | <a href="http://www.panguso.com/" target="_blank">中国搜索</a> | <a href="http://mail.nxnews.net" target="_blank">电子邮局>></a></td>
+<td width="30"></td>
+</tr>
+</table>
+</div>
+</div>
+<div style="height:5px;"></div>
+<div class="daohang">
+
+<ul class="shu">
+<li class="sydh" style="margin-left:3px; width:90px;"><a href="#/dz" target="_blank">党 政</a><br /><a href="#/sz/" target="_blank">时 政</a></li>
+<li class="sydh" style="width:90px;"><a href="#/yc" target="_blank">原 创</a><br /><a href="#/zt" target="_blank">专 题</a></li>
+<li class="sydh" style="width:90px;"><a href="#/sh" target="_blank">社 会</a><br /><a href="#/ms" target="_blank">民 生</a></li>
+<li class="sydh" style="width:90px;"><a href="#/sz/qwfb/" target="_blank">权威发布</a><br /><a href="#/sz/gbgs/index.html" target="_blank">干部公示</a></li>
+<li class="sydh" style="width:90px;"><a href="#/ds" target="_blank">地 市</a><br /><a href="#/wh" target="_blank">文 化</a></li>
+<li class="sydh" style="width:90px;"><a href="http://www.nxnews.net/nxstzx/" target="_blank">视听在线</a><br /><a href="http://www.nxzfhfw.gov.cn/17py" target="_blank">作风评议</a></li>
+<li class="sydh" style="width:90px;"><a href="http://www.nxnet.cn/portal.php" target="_blank">蔓草社区</a><br /><a href="http://www.wine.gov.cn/" target="_blank">紫色梦想</a></li>
+<li class="sydh" style="width:90px;"><a href="#/ly" target="_blank">旅 游</a><br /><a href="#/cj" target="_blank">财 经</a></li>
+<li class="sydh" style="width:90px;"><a href="#/ty" target="_blank">体 育</a><br /><a href="#/yl" target="_blank">娱 乐</a></li>
+<li class="sydh" style="width:90px;"><a href="#/tp" target="_blank">图 片</a></a><br /><a href="http://auto.nxnews.net/" target="_blank">汽 车</a></li>
+<li class="sydh" style="width:90px;"><a href="http://gfjy.nxnews.net/" target="_blank">国防教育</a><br /><A href="http://www.nxnews.net/ms/" target="_blank">宁夏故事</a></li>
+</ul>
+</div>
+</div>
+<div style="height:10px;"></div>
+<div class="nrcontent">
+<div class="nrwz listblackf12h25" style="margin-bottom:10px;">&gt;&gt;您当前的位置:<a href="#" target="_blank" title="首页" class="CurrChnlCls">首页</a>&nbsp;->&nbsp;<a href="" target="_blank" title="今日网闻" class="CurrChnlCls">今日网闻</a></div>
+<div class="z">
+<div class="nrzw">
+<div style="height:15px;"></div>
+<div class="zwfbt"></div>
+<div class="zwbt">{标题}</div>
+<div style="width:550px; margin:0 auto; position:relative; height:45px;">
+<div style="position:absolute; left:0px; height:45px; line-height:45px;" class="listblackf14h25">{精准时间}&nbsp;&nbsp;&nbsp;来源:{随机变量1}</div>
+</div>
+<div class="article">
+<div style="height:15px"></div>
+<div>
+<p><div class=TRS_Editor>
+<p align="justify">　　{随机变量1}讯（<font face="楷体,楷体_GB2312">记者&nbsp;{标题},{随机段落1}</font>）
+<p>{标题}　　{随机段落2}</p>
+<p><img style="max-width:500px" src="http://img.socai.la/img/{随机数字1}.jpg"></p>
+<p>　　{随机段落3}</p>
+<p>　　{随机段落4}</p>
+</p>
+</div>
+</p>
+</div>
+</div>
+<div style="height:15px"></div>
+<div style="width:650px; margin:0 auto; height:30px; line-height:30px; position:relative">
+</div>
+<div style="height:15px; border-bottom:1px solid #ccc"></div>
+</div>
+</div>
+<div class="y">
+<div style="border:1px solid #e1e1e1; padding:10px;">
+<div style="height:30px; background-color:#f4f4f4; border-bottom:1px solid #e41f1f" class="lmbt">&nbsp;&nbsp;今日网闻</div>
+<div>
+<table width="100%" cellpadding="0" cellspacing="5">
+<tr>
+<td align="left" class="hs14" valign="middle" colspan="2">·&nbsp;<a href="{随机链接1}" target="_blank">{随机变量B1}</a></td>
+</tr>
+<tr>
+<td align="left" class="hs14" valign="middle" colspan="2">·&nbsp;<a href="{随机链接2}" target="_blank">{随机变量B2}</a></td>
+</tr>
+<tr>
+<td align="left" class="hs14" valign="middle" colspan="2">·&nbsp;<a href="{随机链接3}" target="_blank">{随机变量B3}</a></td>
+</tr>
+<tr>
+<td align="left" class="hs14" valign="middle" colspan="2">·&nbsp;<a href="{随机链接4}" target="_blank">{随机变量B4}</a></td>
+</tr>
+<tr>
+<td align="left" class="hs14" valign="middle" colspan="2">·&nbsp;<a href="{随机链接5}" target="_blank">{随机变量B5}</a></td>
+</tr>
+<tr>
+<td align="left" class="hs14" valign="middle" colspan="2">·&nbsp;<a href="{随机链接6}" target="_blank">{随机变量B6}</a></td>
+</tr>
+<tr>
+<td align="left" class="hs14" valign="middle" colspan="2">·&nbsp;<a href="{随机链接7}" target="_blank">{随机变量B7}</a></td>
+</tr>
+<tr>
+<td align="left" class="hs14" valign="middle" colspan="2">·&nbsp;<a href="{随机链接8}" target="_blank">{随机变量B8}</a></td>
+</tr>
+</table>
+</div>
+</div>
+<div style="height:15px;"></div>
+<div style="border:1px solid #e1e1e1; padding:10px;">
+<div style="height:30px; background-color:#f4f4f4; border-bottom:1px solid #e41f1f" class="lmbt">&nbsp;&nbsp;图片</div>
+<div>
+<table width="100%" cellpadding="0" cellspacing="5">
+<tr>
+<td align="center" valign="top" colspan="3"><table width="100%" border="0" cellspacing="2">
+<tr>
+<td align="center" valign="top"><a href="?4554338458.aspx" target="_blank"><img src="http://www.nxnews.net/tp/rdtp_14351/201803/W020180327572503785588.jpg" width=130 height=90 border=0/></a></td>
+</tr>
+<tr>
+<td align="center" valign="top" class="hs12gd"><a href="{随机链接9}" target="_blank">{随机变量B9}</a>{精准时间}</td>
+</tr>
+</table></td>
+<td align="center" valign="top" colspan="3"><table width="100%" border="0" cellspacing="2">
+<tr>
+<td align="center" valign="top"><a href="?607330714/" target="_blank"><img src="http://www.nxnews.net/tp/rdtp_14351/201803/W020180327569834352051.jpg" width=130 height=90 border=0/></a></td>
+</tr>
+<tr>
+<td align="center" valign="top" class="hs12gd"><a href="{随机链接10}" target="_blank">{随机变量B10}</a>{精准时间}</td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td align="center" valign="top" colspan="3"><table width="100%" border="0" cellspacing="2">
+<tr>
+<td align="center" valign="top"><a href="?703613577" target="_blank"><img src="http://www.nxnews.net/tp/rdtp_14351/201803/W020180327566421832078.jpg" width=130 height=90 border=0/></a></td>
+</tr>
+<tr>
+<td align="center" valign="top" class="hs12gd"><a href="{随机链接11}" target="_blank">{随机变量B11}</a>{精准时间}</td>
+</tr>
+</table></td>
+<td align="center" valign="top" colspan="3"><table width="100%" border="0" cellspacing="2">
+<tr>
+<td align="center" valign="top"><a href="?fid=7671487812" target="_blank"><img src="http://www.nxnews.net/tp/rdtp_14351/201803/W020180327564657010788.jpg" width=130 height=90 border=0/></a></td>
+</tr>
+<tr>
+<td align="center" valign="top" class="hs12gd"><a href="{随机链接12}" target="_blank">{随机变量B12}</a>{精准时间}</td>
+</tr>
+</table></td>
+</tr>
+</table>
+</div>
+</div>
+<div style="height:15px;"></div>
+<div style="border:1px solid #e1e1e1; padding:10px;">
+<div style="height:30px; background-color:#f4f4f4; border-bottom:1px solid #e41f1f" class="lmbt">&nbsp;&nbsp;民生在线</div>
+<div>
+<table width="100%" cellpadding="0" cellspacing="5">
+<tr>
+<td align="left" class="hs14" valign="middle" colspan="2">·&nbsp;<a href="{随机链接13}" target="_blank">{随机关键字10}</a></td>
+</tr>
+<tr>
+<td align="left" class="hs14" valign="middle" colspan="2">·&nbsp;<a href="{随机链接14}" target="_blank">{随机关键字11}</a></td>
+</tr>
+<tr>
+<td align="left" class="hs14" valign="middle" colspan="2">·&nbsp;<a href="{随机链接15}" target="_blank">{随机关键字12}</a></td>
+</tr>
+<tr>
+<td align="left" class="hs14" valign="middle" colspan="2">·&nbsp;<a href="{随机链接16}" target="_blank">{随机关键字13}</a></td>
+</tr>
+<tr>
+<td align="left" class="hs14" valign="middle" colspan="2">·&nbsp;<a href="{随机链接17}" target="_blank">{随机关键字14}</a></td>
+</tr>
+<tr>
+<td align="left" class="hs14" valign="middle" colspan="2">·&nbsp;<a href="{随机链接18}" target="_blank">{随机关键字15}</a></td>
+</tr>
+<tr>
+<td align="left" class="hs14" valign="middle" colspan="2">·&nbsp;<a href="{随机链接19}" target="_blank">{随机关键字16}</a></td>
+</tr>
+<tr>
+<td align="left" class="hs14" valign="middle" colspan="2">·&nbsp;<a href="{随机链接20}" target="_blank">{随机关键字17}</a></td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div style="clear:both"></div>
+</div>
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr>
+<td height="10"></td>
+</tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr>
+<td><div class="bottom">
+<div class="listblackf12h25" style="width:1000px; margin:0px auto 0px auto; text-align:center;  vertical-align:middle; height:220px; position:relative; ">
+<div style="position:absolute; top:12px; text-align:center; left:100px;"><a href="http://www.nxnews.net/gywm/index.shtml" target="_blank">关于我们</a> | <a href="http://www.nxnews.net/bqsm/index.shtml" target="_blank">版权声明</a> | 广告服务 | 网站律师 | <a href="http://www.nxnews.net/lxfs/index.shtml" target="_blank">联系方式</a><br />{随机变量1}(<a href="http://www.nxnews.net">www.nxnews.net</a>)版权所有，未经授权禁止转载或建立镜像<br>
+{随机变量1}　Copyright 2000-2012 NXNEWS.NET All Rights Reserved<br>
+地址：宁夏银川市兴庆区中山南街47号宁夏日报新闻大厦 邮编：750001　新闻热线：0951-5029811　传真：0951-5029812 　合作洽谈：0951-6031787 <br>
+互联网新闻信息服务许可证号：6412017001　国家广电总局信息网络传播视听节目许可证：2908244号<br />新闻出版总署互联网出版许可证：新出网证（宁）002号　公安网监备案编号：宁网安备640100002<br>
+工信部ICP备案编号：宁ICP备0500661号　增值电信业务经营许可证编号：宁B2-20060004<br>
+法律顾问：言成律师事务所 <a href="/lawyer/show/9.aspx" target="_blank">鹿璐</a> 电话：13369511100，15109519190</div>
+<div style="position:absolute; left:0px; top:125px;"><a href="http://www.12377.cn" target="_blank"><img src="http://www.nxnews.net/images/tx.jpg" alt="中国互联网违法和不良信息举报中心" height="46" border="0" /></a> <a href="http://www.12321.cn/" target="_blank"><img src="http://www.nxnews.net/images/12321.jpg" alt="工信部网络不良信息与垃圾信息举报受理中心" height="46" /></a><br>违法和不良信息举报电话0951-5029811</div>
+<div style="position:absolute; right:0px; top:125px;"><a href="http://www.ycpolice.com/Liuyan/110show" target="_blank"><img src="http://www.nxnews.net/images/wsbj.jpg" alt="网上报警" width="87" height="46" border="0" /></a></div>
+</div>
+</div></td>
+</tr>
+</table>
+<link href="http://www.nxnews.net/images/ccc.css" rel="stylesheet" type="text/css" />
+</body>
+</html>

